@@ -9,11 +9,9 @@ class Block:
     previoushash = ""
     currenthash = ""
     nonce = 0
-    utils = None
 
     def __init__(self):
         self.timestamp = int(round(time.time() * 1000))
-        utils = Utils()
 
     def getIndex(self):
         return self.index
@@ -45,20 +43,21 @@ class Block:
     def mine(self, difficulty):
         mined = ""
         diffstring = ""
-        m = hashlib.md5()
-
-        for i in range(difficulty):
+        nonce = 0
+        for i in range(int(difficulty)):
             diffstring = diffstring + "0"
 
         while not mined.startswith(diffstring):
-            m.update(str(self.compose()).encode('utf-8'))
-            mined = m.hexdigest()
+            mined = hashlib.sha256(self.compose()).hexdigest()
             self.nonce = self.nonce + 1
 
+
+        print(self.compose().decode('utf-8'))
+        print (mined)
         self.currenthash = mined
 
     def compose(self):
-        return str(self.index) + str(self.message) + str(self.timestamp) + str(self.previoushash) + str(self.nonce)
+        return ("%s,%s,%s,%s,%s" % (self.index, self.message, self.timestamp, self.previoushash, self.nonce)).encode('utf-8')
 
     def visualize(self):
         toprint = [
@@ -69,4 +68,4 @@ class Block:
             "Hash:           " + str(self.currenthash),
             "Nonce:          " + str(self.nonce)
         ]
-        self.utils.printlines(toprint, False)
+        Utils().printlines(toprint, False)

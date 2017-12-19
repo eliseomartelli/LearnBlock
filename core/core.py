@@ -1,16 +1,14 @@
-from core.objects.blockchain import Blockchain
-from core.objects.block import Block
-from core.utils import Utils
+from objects.blockchain import Blockchain
+from objects.block import Block
+from utils import Utils
 
 class Core:
 
     version = ""
-    utils = None
     blockchain = None
 
     def __init__(self, version):
         self.version = version
-        self.utils = Utils()
 
     def start(self):
         self.introprint(self.version)
@@ -31,7 +29,7 @@ class Core:
             "(Type help to see a list of cmds)",
             ""
         ]
-        self.utils.printlines(toprint, True)
+        Utils().printlines(toprint, True)
 
     def helpprint(self):
         helplist = [
@@ -42,10 +40,11 @@ class Core:
             "showblock <or> sb - Shows a block",
             "addblock <or> ab - Adds a new block",
             "minechain <or> mc - Mines the chain",
+            "mine <or> m - Mines a block",
             "quit <or> q <or> exit - Exits this app",
             ""
         ]
-        self.utils.printlines(helplist, False)
+        Utils().printlines(helplist, False)
 
     def byeprint(self):
         byelist = [
@@ -53,12 +52,12 @@ class Core:
             "Bye!",
             ""
         ]
-        self.utils.printlines(byelist, False)
+        Utils().printlines(byelist, False)
 
     def apploop(self):
         killflag = False
         while not killflag:
-            cmd = input("> ")
+            cmd = raw_input("> ")
             killflag = self.commandprocessor(cmd)
         self.byeprint()
 
@@ -69,7 +68,7 @@ class Core:
                 "Blockchain already created",
                 "",
             ]
-            self.utils.printlines(linestoprint, False)
+            Utils().printlines(linestoprint, False)
         else:
             difficulty = input("Difficulty: ")
             self.blockchain = Blockchain(difficulty)
@@ -77,7 +76,7 @@ class Core:
 
     def addblock(self, blocknumber):
         block = Block()
-        block.setMessage(input("Block #" + str(blocknumber) + " Message: "))
+        block.setMessage(raw_input("Block #" + str(blocknumber) + " Message: "))
         self.blockchain.addblock(block)
 
     def commandprocessor(self, cmd):
@@ -97,6 +96,10 @@ class Core:
         elif (cmd == "s") or (cmd == "show"):
             self.blockchain.showblockchain()
 
+        # Mine Block
+        elif (cmd == "m") or (cmd == "mine"):
+            self.blockchain.mineblock(int(input("Block Index: ")))
+
         # Invalid CMD
         else:
             linestoprint = [
@@ -106,4 +109,4 @@ class Core:
                 "type \"help\" for a list of commands.",
                 ""
             ]
-            self.utils.printlines(linestoprint, False)
+            Utils().printlines(linestoprint, False)

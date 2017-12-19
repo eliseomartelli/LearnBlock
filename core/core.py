@@ -77,7 +77,9 @@ class Core:
     def addblock(self, blocknumber):
         block = Block()
         block.setMessage(input("Block #" + str(blocknumber) + " Message: "))
+        block.setIndex(blocknumber)
         self.blockchain.addblock(block)
+        print("Mining...")
 
     def commandprocessor(self, cmd):
         # Quit CMD
@@ -96,10 +98,13 @@ class Core:
         elif (cmd == "s") or (cmd == "show"):
             self.blockchain.showblockchain()
 
-        # Mine Block
-        elif (cmd == "m") or (cmd == "mine"):
-            self.blockchain.mineblock(int(input("Block Index: ")))
+        # Add block cmd
+        elif (cmd == "ab") or (cmd == "addblock"):
+            self.addblock(self.blockchain.getblocknumber())
 
+        # Show block cmd
+        elif (cmd == "sb") or (cmd == "showblock"):
+            self.blockchain.showblock(int(input("Block number: ")))
         # Invalid CMD
         else:
             linestoprint = [

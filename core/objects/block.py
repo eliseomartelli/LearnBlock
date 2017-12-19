@@ -43,21 +43,18 @@ class Block:
     def mine(self, difficulty):
         mined = ""
         diffstring = ""
-        nonce = 0
+        self.nonce = 0
         for i in range(int(difficulty)):
             diffstring = diffstring + "0"
 
-        while not mined.startswith(diffstring):
+        while not (mined.startswith(diffstring)):
             mined = hashlib.sha256(self.compose()).hexdigest()
             self.nonce = self.nonce + 1
 
-
-        print(self.compose().decode('utf-8'))
-        print (mined)
         self.currenthash = mined
 
     def compose(self):
-        return ("%s,%s,%s,%s,%s" % (self.index, self.message, self.timestamp, self.previoushash, self.nonce)).encode('utf-8')
+        return ("%s,%s,%s,%s,%s" % (str(self.index), self.message, str(self.timestamp), self.previoushash, str(self.nonce))).encode('utf-8')
 
     def visualize(self):
         toprint = [

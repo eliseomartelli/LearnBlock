@@ -6,6 +6,7 @@ class Core:
 
     version = ""
     utils = None
+    blockchain = None
 
     def __init__(self, version):
         self.version = version
@@ -61,13 +62,41 @@ class Core:
             killflag = self.commandprocessor(cmd)
         self.byeprint()
 
+    def createblockchain(self):
+        if self.blockchain:
+            linestoprint = [
+                "",
+                "Blockchain already created",
+                "",
+            ]
+            self.utils.printlines(linestoprint, False)
+        else:
+            difficulty = input("Difficulty: ")
+            self.blockchain = Blockchain(difficulty)
+            self.addblock(self.blockchain.getblocknumber())
+
+    def addblock(self, blocknumber):
+        block = Block()
+        block.setMessage(input("Block #" + str(blocknumber) + " Message: "))
+        self.blockchain.addblock(block)
+
     def commandprocessor(self, cmd):
         # Quit CMD
         if (cmd == "q") or (cmd == "quit") or (cmd == "exit"):
             return True
+
         # Help CMD
         elif (cmd == "h") or (cmd == "help"):
             self.helpprint()
+
+        # Create CMD
+        elif (cmd == "c") or (cmd == "create"):
+            self.createblockchain()
+
+        # Show cmd
+        elif (cmd == "s") or (cmd == "show"):
+            self.blockchain.showblockchain()
+
         # Invalid CMD
         else:
             linestoprint = [

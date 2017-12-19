@@ -1,5 +1,6 @@
 import time
 import hashlib
+from core.utils import Utils
 
 class Block:
     index = 0
@@ -8,9 +9,11 @@ class Block:
     previoushash = ""
     currenthash = ""
     nonce = 0
+    utils = None
 
     def __init__(self):
         self.timestamp = int(round(time.time() * 1000))
+        utils = Utils()
 
     def getIndex(self):
         return self.index
@@ -58,9 +61,12 @@ class Block:
         return str(self.index) + str(self.message) + str(self.timestamp) + str(self.previoushash) + str(self.nonce)
 
     def visualize(self):
-        print("Index:          " + str(self.index))
-        print("Message:        " + str(self.message))
-        print("Timestamp:      " + str(self.timestamp))
-        print("Previous Hash:  " + str(self.previoushash))
-        print("Hash:           " + str(self.currenthash))
-        print("Nonce:          " + str(self.nonce))
+        toprint = [
+            "Index:          " + str(self.index),
+            "Message:        " + str(self.message),
+            "Timestamp:      " + str(self.timestamp),
+            "Previous Hash:  " + str(self.previoushash),
+            "Hash:           " + str(self.currenthash),
+            "Nonce:          " + str(self.nonce)
+        ]
+        self.utils.printlines(toprint, False)

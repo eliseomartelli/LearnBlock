@@ -14,10 +14,10 @@ class Blockchain:
         else:
             return 0
     def showblockchain(self):
-        print ""
+        print
         for block in self.chain:
             block.visualize()
-            print ""
+            print
 
     def mineblock(self, blocknumber):
         if (blocknumber > 0):

@@ -1,6 +1,6 @@
-from objects.blockchain import Blockchain
-from objects.block import Block
-from utils import Utils
+from core.objects.blockchain import Blockchain
+from core.objects.block import Block
+from core.utils import Utils
 
 class Core:
 
@@ -57,7 +57,7 @@ class Core:
     def apploop(self):
         killflag = False
         while not killflag:
-            cmd = raw_input("> ")
+            cmd = input("> ")
             killflag = self.commandprocessor(cmd)
         self.byeprint()
 
@@ -76,7 +76,7 @@ class Core:
 
     def addblock(self, blocknumber):
         block = Block()
-        block.setMessage(raw_input("Block #" + str(blocknumber) + " Message: "))
+        block.setMessage(input("Block #" + str(blocknumber) + " Message: "))
         self.blockchain.addblock(block)
 
     def commandprocessor(self, cmd):

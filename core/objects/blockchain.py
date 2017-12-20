@@ -20,6 +20,27 @@ class Blockchain:
         self.chain[blocknumber].visualize()
         print()
 
+    def checkchain(self):
+        prevhash = ""
+        chainbroken = False
+        for block in self.chain:
+            chainbroken = block.getPreviousHash() != prevhash
+            prevhash = block.getCurrentHash()
+            if chainbroken:
+                print("Chain broken at block index: " + str(block.getIndex() - 1))
+                break
+
+    def editblock(self, blocknumber):
+        self.chain[blocknumber].setMessage(input("Message: "))
+        self.chain[blocknumber].mine(self.difficulty)
+
+
+    def remine(self):
+        for block, index in zip(self.chain, range(0, len(self.chain))):
+            if index > 0:
+                block.setPreviousHash(self.chain[index-1].getCurrentHash())
+            block.mine(self.difficulty)
+
     def showblockchain(self):
         print()
         for block in self.chain:

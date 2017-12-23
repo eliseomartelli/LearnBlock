@@ -6,7 +6,7 @@ Learn the blockchain
 1. Clone this repo;
 2. ```python3 learnblock.py```
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/hc7PcjFM7Ro" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+[![DEMO](https://img.youtube.com/vi/hc7PcjFM7Ro/0.jpg)](https://www.youtube.com/watch?v=hc7PcjFM7Ro)
 
 ## License
 

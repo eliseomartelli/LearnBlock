@@ -1,6 +1,9 @@
-# LearnBlock
-Learn the blockchain
-<img src="icon.png" width="256px">
+<p align=center>
+  <img src="icon.png" width="256px">
+  <h1 align=center>LearnBlock</h1>
+  <p align=center>Learn the blockchain</p>
+</p>
+
 ## RUN
 
 1. Clone this repo;

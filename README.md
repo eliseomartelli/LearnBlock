@@ -1,6 +1,6 @@
 # LearnBlock
 Learn the blockchain
-
+<img src="icon.png" width="256px">
 ## RUN
 
 1. Clone this repo;

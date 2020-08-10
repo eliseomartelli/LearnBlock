@@ -1,5 +1,3 @@
-from core.objects.block import Block
-
 class Blockchain:
     difficulty = 0
     chain = []

@@ -1,14 +1,15 @@
 class Blockchain:
     difficulty = 0
     chain = []
+
     def __init__(self, difficulty):
         self.difficulty = difficulty
+
     def addblock(self, block):
         if block.index > 0:
-            block.setPreviousHash(self.chain[len(self.chain) -1].getCurrentHash())
+            block.setPreviousHash(self.chain[-1].getCurrentHash())
         self.chain.append(block)
         self.mineblock(len(self.chain) - 1)
-
 
     def getblocknumber(self):
         return len(self.chain)

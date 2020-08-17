@@ -2,6 +2,7 @@ import time
 import hashlib
 from core.utils import Utils
 
+
 class Block:
     index = 0
     message = ""
@@ -54,7 +55,16 @@ class Block:
         self.currenthash = mined
 
     def compose(self):
-        return ("%s,%s,%s,%s,%s" % (str(self.index), self.message, str(self.timestamp), self.previoushash, str(self.nonce))).encode('utf-8')
+        return (
+            "%s,%s,%s,%s,%s"
+            % (
+                str(self.index),
+                self.message,
+                str(self.timestamp),
+                self.previoushash,
+                str(self.nonce),
+            )
+        ).encode("utf-8")
 
     def visualize(self):
         toprint = [
@@ -63,6 +73,6 @@ class Block:
             "Timestamp:      " + str(self.timestamp),
             "Previous Hash:  " + str(self.previoushash),
             "Hash:           " + str(self.currenthash),
-            "Nonce:          " + str(self.nonce)
+            "Nonce:          " + str(self.nonce),
         ]
         Utils().printlines(toprint, False)

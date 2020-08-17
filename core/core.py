@@ -2,6 +2,7 @@ from core.objects.blockchain import Blockchain
 from core.objects.block import Block
 from core.utils import Utils
 
+
 class Core:
 
     version = ""
@@ -27,7 +28,7 @@ class Core:
             "Let's make a blockchain!",
             "",
             "(Type help to see a list of cmds)",
-            ""
+            "",
         ]
         Utils().printlines(toprint, True)
 
@@ -42,16 +43,12 @@ class Core:
             "minechain <or> mc - Mines the chain",
             "mine <or> m - Mines a block",
             "quit <or> q <or> exit - Exits this app",
-            ""
+            "",
         ]
         Utils().printlines(helplist, False)
 
     def byeprint(self):
-        byelist = [
-            "",
-            "Bye!",
-            ""
-        ]
+        byelist = ["", "Bye!", ""]
         Utils().printlines(byelist, False)
 
     def apploop(self):
@@ -109,9 +106,9 @@ class Core:
         else:
             linestoprint = [
                 "",
-                "\"" + cmd + "\" not found.",
+                '"' + cmd + '" not found.',
                 "",
-                "type \"help\" for a list of commands.",
-                ""
+                'type "help" for a list of commands.',
+                "",
             ]
             Utils().printlines(linestoprint, False)

@@ -6,7 +6,7 @@
 
 ## What's LearnBlock?
 
-LearnBlock is a blockchain simulator that can be used to teach how a blockchain works.  
+LearnBlock is a blockchain simulator that can be used to teach how a blockchain works.
 You can look at the code to see the (simplified) idea behind a blockchain or you can play with it to see how data is stored inside a chain.
 
 ## How to Run
